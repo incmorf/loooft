@@ -5,7 +5,7 @@
  Посмотрите как работает forEach и повторите это поведение для массива, который будет передан в параметре array
  */
 function forEach(array, fn) {
-    for(let i=0;i<array.length;i++){
+    for (let i=0;i<array.length;i++) {
         fn(array[i], i, array);
     }
 }
@@ -17,9 +17,11 @@ function forEach(array, fn) {
  */
 function map(array, fn) {
     var newArray = [];
-    for(let i=0;i<array.length;i++){
+
+    for (let i=0;i<array.length;i++) {
         newArray.push(fn(array[i], i, array));
     }
+    
     return newArray;
 }
 
@@ -35,11 +37,13 @@ function map(array, fn) {
 function reduce(array, fn, initial) {
     var previousValue = initial || array[0];
     var i;
+
     (previousValue === array[0]) ? i=1 : i=0;
 
-    for(;i<array.length;i++){
+    for (;i<array.length;i++) {
         previousValue = fn(previousValue, array[i], i, array);
     }
+    
     return previousValue;
 
 }
@@ -52,9 +56,11 @@ function reduce(array, fn, initial) {
  */
 function upperProps(obj) {
     var newArray = [];
-    for(var key in obj){
+
+    for (var key in obj) {
         newArray.push(key.toUpperCase());
     }
+    
     return newArray;
 }
 
@@ -66,18 +72,26 @@ function upperProps(obj) {
 function slice(array, from = 0, to) {
     var newArray = [];
  
-    (Math.abs(from) > array.length && from < 0) ? from = 0:
-    (from < 0) ? from += array.length:
-	(from > array.length) ? from = array.length: 
-    from;
+    if (Math.abs(from) > array.length && from < 0) {
+        from = 0;
+    } else if (from < 0) {
+        from += array.length;
+    } else if (from > array.length) {
+        from = array.length
+    } 
 
-    (Math.abs(to) > array.length && to < 0) ? to = 0:
-    (to < 0) ? to += array.length:
-	(to > array.length || to === undefined) ? to = array.length:
-    to;
-    for(let i = from; i<to; i++) {
+    if (Math.abs(to) > array.length && to < 0) {
+        to = 0
+    } else if (to < 0) {
+        to += array.length;
+    } else if (to > array.length || to === undefined) {
+        to = array.length;
+    }
+    
+    for (let i = from; i<to; i++) {
         newArray.push(array[i]);
     }
+    
     return newArray;
 }
 /*
@@ -86,15 +100,16 @@ function slice(array, from = 0, to) {
  Proxy должен перехватывать все попытки записи значений свойств и возводить это значение в квадрат
  */
 function createProxy(obj) {
-    
 
     let proxy = new Proxy(obj, {
    
-      set(target, prop, value) {
-        target[prop] = value*value;
-        return true;
-      }
+        set(target, prop, value) {
+            target[prop] = value*value;
+            
+            return true;
+        }
     });
+
     return proxy;
 }
 
