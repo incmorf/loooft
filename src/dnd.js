@@ -26,7 +26,28 @@ const homeworkContainer = document.querySelector('#homework-container');
    const newDiv = createDiv();
    homeworkContainer.appendChild(newDiv);
  */
+
 function createDiv() {
+    var elem = document.createElement('DIV');
+
+    elem.classList.add('draggable-div');
+    elem.setAttribute('draggable', 'true')
+    elem.style.position = 'absolute';
+    elem.style.width = `${getRandomArbitrary(10, 150)}px`;
+    elem.style.height = `${getRandomArbitrary(10, 150)}px`;
+
+    elem.style.top = `${getRandomArbitrary(10, 150)}px`;
+    elem.style.left = `${getRandomArbitrary(10, 150)}px`;
+
+    elem.style.backgroundColor = `rgb(${getRandomArbitrary(1, 255)}, 
+    ${getRandomArbitrary(1, 255)}, ${getRandomArbitrary(1, 255)})`;
+
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    return elem;
+
 }
 
 /*
@@ -38,20 +59,32 @@ function createDiv() {
    addListeners(newDiv);
  */
 function addListeners(target) {
+  
+    target.addEventListener('dragstart', handleDragStart);
+    target.addEventListener('dragend', handleDrop);
+
+    function handleDragStart(e) {
+        e.target.getBoundingClientRect();
+        e.target.getBoundingClientRect();
+    }
+    function handleDrop(e) {
+    
+        this.style.top = e.pageY - this.offsetHeight / 2 +'px';
+        this.style.left = e.pageX - this.offsetWidth / 2 +'px';
+      
+    }
 }
 
 let addDivButton = homeworkContainer.querySelector('#addDiv');
 
 addDivButton.addEventListener('click', function() {
-    // создать новый div
+  
     const div = createDiv();
 
-    // добавить на страницу
     homeworkContainer.appendChild(div);
-    // назначить обработчики событий мыши для реализации D&D
+  
     addListeners(div);
-    // можно не назначать обработчики событий каждому div в отдельности, а использовать делегирование
-    // или использовать HTML5 D&D - https://www.html5rocks.com/ru/tutorials/dnd/basics/
+
 });
 
 export {
