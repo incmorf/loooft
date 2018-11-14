@@ -56,9 +56,11 @@ function reduce(array, fn, initial) {
  */
 function upperProps(obj) {
     var newArray = [];
-
+    
     for (var key in obj) {
-        newArray.push(key.toUpperCase());
+        if (key) {
+            newArray.push(key.toUpperCase());
+        }
     }
     
     return newArray;
