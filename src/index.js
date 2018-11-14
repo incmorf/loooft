@@ -1,7 +1,3 @@
-import {
-    SSL_OP_SSLEAY_080_CLIENT_DH_BUG
-} from 'constants';
-
 /* ДЗ 4 - работа с DOM */
 
 /*
@@ -176,7 +172,7 @@ function deleteTextNodesRecursive(where) {
      texts: 3
    }
  */
-function collectDOMStat(root) {}
+// function collectDOMStat(root) {}
 
 /*
  Задание 8 *:
@@ -210,7 +206,7 @@ function collectDOMStat(root) {}
      nodes: [div]
    }
  */
-function observeChildNodes(where, fn) {}
+// function observeChildNodes(where, fn) {}
 
 export {
     createDivWithText,
@@ -218,7 +214,7 @@ export {
     findAllPSiblings,
     findError,
     deleteTextNodes,
-    deleteTextNodesRecursive,
-    collectDOMStat,
-    observeChildNodes
+    deleteTextNodesRecursive
+    // collectDOMStat,
+    // observeChildNodes
 };
